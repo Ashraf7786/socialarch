@@ -7,11 +7,11 @@ export function Hero() {
         <section id="home">
             <HeroGeometric
                 badge={
-                    <>
-                        <span className="text-lg">🔥</span>
-                        <span className="text-brand-red ml-1">Premium</span>
-                        <span className="text-white ml-1">Social Media Marketing Agency</span>
-                    </>
+                    <div className="flex flex-wrap items-center justify-center gap-1.5 text-xs md:text-sm">
+                        <span className="text-base leading-none">🔥</span>
+                        <span className="text-brand-red font-semibold">Premium</span>
+                        <span className="text-white">Social Media Marketing Agency</span>
+                    </div>
                 }
                 title1="Master the Digital Landscape"
                 title2={

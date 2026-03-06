@@ -156,11 +156,11 @@ function HeroGeometric({
                         variants={fadeUpVariants}
                         initial="hidden"
                         animate="visible"
-                        className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] mb-8 md:mb-12"
+                        className="inline-flex w-fit max-w-[95%] items-center justify-center gap-2 px-5 py-2.5 rounded-3xl md:rounded-full bg-white/[0.03] border border-white/[0.08] mb-8 md:mb-12"
                     >
-                        <span className="text-sm text-white/60 tracking-wide flex items-center gap-1">
+                        <div className="text-white/60 tracking-wide flex justify-center text-center">
                             {badge}
-                        </span>
+                        </div>
                     </motion.div>
 
                     <motion.div
