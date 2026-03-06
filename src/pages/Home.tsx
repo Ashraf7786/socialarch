@@ -7,10 +7,16 @@ import { SocialShowcase } from '../components/SocialShowcase';
 import { Roadmap } from '../components/Roadmap';
 import { Insights } from '../components/Insights';
 import { FAQ } from '../components/FAQ';
+import { Helmet } from 'react-helmet-async';
 
 export function Home() {
     return (
         <main className="relative z-10 w-full flex flex-col gap-0 md:gap-12">
+            <Helmet>
+                <title>SocialArk | Premium Social Media Marketing Agency</title>
+                <meta name="description" content="Master the digital landscape with SocialArk. We build authority and transform ambitious brands into market leaders through innovative design and cutting-edge strategy." />
+                <meta name="keywords" content="social media marketing, digital marketing company, social media agency, content creation, paid advertising" />
+            </Helmet>
             <Hero />
             <Features />
             <AboutUs />

@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Helmet } from 'react-helmet-async';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,6 +27,11 @@ export function About() {
 
     return (
         <main ref={mainRef} className="w-full bg-[#050505] text-white overflow-hidden font-sans">
+            <Helmet>
+                <title>About SocialArk | The Architects of Digital Growth</title>
+                <meta name="description" content="Discover SocialArk, a premier social media marketing agency dedicated to bridging the gap between ambitious visions and measurable digital reality." />
+                <meta name="keywords" content="about us, social media agency, digital growth, digital marketing experts, SocialArk methodology" />
+            </Helmet>
 
             {/* 1. THE HEADER: OUR IDENTITY */}
             <section className="relative w-full min-h-[70vh] flex items-center justify-center pt-32 pb-20 overflow-hidden">

@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUpRight, Play, ExternalLink } from 'lucide-react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
+import { Helmet } from 'react-helmet-async';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -282,6 +283,11 @@ export function Projects() {
 
     return (
         <main ref={containerRef} className="min-h-screen bg-[#050505] relative overflow-hidden pt-32">
+            <Helmet>
+                <title>Our Portfolio | SocialArk Digital Works</title>
+                <meta name="description" content="Explore a curated collection of SocialArk's finest digital experiences, engineered precisely to elevate and inspire modern businesses." />
+                <meta name="keywords" content="portfolio, digital experiences, UI/UX design, branding, case studies, video reels, Web development" />
+            </Helmet>
 
             {/* 3D Background */}
             <div className="absolute inset-0 z-0 pointer-events-none opacity-40">

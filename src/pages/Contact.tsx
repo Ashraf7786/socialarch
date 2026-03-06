@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { Helmet } from 'react-helmet-async';
 
 export function Contact() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -45,6 +46,11 @@ export function Contact() {
 
     return (
         <main ref={containerRef} className="min-h-screen pt-32 px-6 md:px-12 max-w-[1400px] mx-auto relative overflow-hidden">
+            <Helmet>
+                <title>Contact SocialArk | Let's Build Something Great</title>
+                <meta name="description" content="Ready to take your digital presence to the next level? Contact SocialArk today and let's discuss how our premium marketing agency can scale your brand." />
+                <meta name="keywords" content="contact us, social media agency contact, hire digital marketers, marketing consultation, SocialArk support" />
+            </Helmet>
 
             {/* Background Glow */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-red rounded-full blur-[150px] opacity-10 pointer-events-none -translate-y-1/2 translate-x-1/2" />
