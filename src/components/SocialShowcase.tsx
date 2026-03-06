@@ -143,11 +143,13 @@ export function SocialShowcase() {
                             {/* iPhone Frame */}
                             <div
                                 className="absolute inset-0 bg-black rounded-[3.5rem] border-[6px] border-[#2a2a2a] shadow-2xl overflow-hidden z-10 custom-shadow ring-1 ring-white/10 group/phone cursor-pointer"
-                                onMouseEnter={(e) => {
+                                onPointerEnter={(e) => {
+                                    if (e.pointerType === 'touch') return;
                                     const video = e.currentTarget.querySelector('video');
                                     if (video) video.play().catch(() => { });
                                 }}
-                                onMouseLeave={(e) => {
+                                onPointerLeave={(e) => {
+                                    if (e.pointerType === 'touch') return;
                                     const video = e.currentTarget.querySelector('video');
                                     if (video) video.pause();
                                 }}

@@ -158,32 +158,33 @@ const videoReels = [
 
 function ReelCard({ reel }: { reel: typeof videoReels[0] }) {
     const videoRef = useRef<HTMLVideoElement>(null);
+    const [isPlaying, setIsPlaying] = useState(false);
 
-    const handleMouseEnter = () => {
+    const handlePointerEnter = (e: React.PointerEvent) => {
+        if (e.pointerType === 'touch') return;
         if (videoRef.current) {
-            // Note: Modern browsers require the user to have interacted with the website 
-            // before sound is allowed to autoplay via script.
-            videoRef.current.play().catch(() => {
+            videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {
                 console.log("Autoplay blocked: User must interact with the document first.");
             });
         }
     };
 
-    const handleMouseLeave = () => {
+    const handlePointerLeave = (e: React.PointerEvent) => {
+        if (e.pointerType === 'touch') return;
         if (videoRef.current) {
             videoRef.current.pause();
             videoRef.current.currentTime = 0;
+            setIsPlaying(false);
         }
     };
 
     const handleClick = () => {
         if (videoRef.current) {
             if (videoRef.current.paused) {
-                videoRef.current.play().catch(() => {
-                    console.log("Autoplay blocked: User must interact with the document first.");
-                });
+                videoRef.current.play().then(() => setIsPlaying(true)).catch(() => { });
             } else {
                 videoRef.current.pause();
+                setIsPlaying(false);
             }
         }
     };
@@ -191,31 +192,31 @@ function ReelCard({ reel }: { reel: typeof videoReels[0] }) {
     return (
         <div
             className="reel-card group relative w-[280px] h-[500px] md:w-[320px] md:h-[570px] rounded-[2.5rem] overflow-hidden cursor-pointer shrink-0 border border-white/10 shadow-2xl bg-black touch-pan-x"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
+            onPointerEnter={handlePointerEnter}
+            onPointerLeave={handlePointerLeave}
             onClick={handleClick}
         >
             <img
                 src={reel.image}
                 alt={reel.title}
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 z-0"
+                className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 z-0 ${isPlaying ? 'scale-110' : 'scale-100'}`}
             />
-            {/* Hover Video Layer */}
+            {/* Hover/Playing Video Layer */}
             <video
                 ref={videoRef}
                 src={reel.video}
                 loop
                 playsInline
-                className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 z-10 ${isPlaying ? 'opacity-100' : 'opacity-0'}`}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity z-20" />
+            <div className={`absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent transition-opacity duration-300 z-20 ${isPlaying ? 'opacity-90' : 'opacity-80'}`} />
 
             {/* Play Button */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 group-hover:opacity-0 group-hover:scale-150 transition-all duration-500 z-30">
+            <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 transition-all duration-500 z-30 ${isPlaying ? 'opacity-0 scale-150' : 'opacity-100 scale-100'}`}>
                 <Play className="w-6 h-6 text-white ml-1 fill-white" />
             </div>
 
-            <div className="absolute bottom-0 left-0 w-full p-8 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 z-30">
+            <div className={`absolute bottom-0 left-0 w-full p-8 transform transition-transform duration-300 z-30 ${isPlaying ? 'translate-y-0' : 'translate-y-4'}`}>
                 <span className="inline-block px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-xs text-white font-medium tracking-wider mb-3 border border-white/20">
                     {reel.client}
                 </span>
