@@ -176,11 +176,24 @@ function ReelCard({ reel }: { reel: typeof videoReels[0] }) {
         }
     };
 
+    const handleClick = () => {
+        if (videoRef.current) {
+            if (videoRef.current.paused) {
+                videoRef.current.play().catch(() => {
+                    console.log("Autoplay blocked: User must interact with the document first.");
+                });
+            } else {
+                videoRef.current.pause();
+            }
+        }
+    };
+
     return (
         <div
-            className="reel-card group relative w-[280px] h-[500px] md:w-[320px] md:h-[570px] rounded-[2.5rem] overflow-hidden cursor-pointer shrink-0 border border-white/10 shadow-2xl bg-black"
+            className="reel-card group relative w-[280px] h-[500px] md:w-[320px] md:h-[570px] rounded-[2.5rem] overflow-hidden cursor-pointer shrink-0 border border-white/10 shadow-2xl bg-black touch-pan-x"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
+            onClick={handleClick}
         >
             <img
                 src={reel.image}
@@ -373,7 +386,7 @@ export function Projects() {
                             </div>
                         )}
 
-                        <div className="w-full overflow-x-auto pb-12 hide-scrollbar mask-gradient-horizontal">
+                        <div className="w-full overflow-x-auto pb-12 hide-scrollbar mask-gradient-horizontal" style={{ WebkitOverflowScrolling: 'touch' }}>
                             <div className="reels-container flex gap-6 md:gap-8 w-max px-4">
                                 {videoReels.map((reel) => (
                                     <ReelCard key={reel.id} reel={reel} />

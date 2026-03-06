@@ -151,6 +151,16 @@ export function SocialShowcase() {
                                     const video = e.currentTarget.querySelector('video');
                                     if (video) video.pause();
                                 }}
+                                onClick={(e) => {
+                                    const video = e.currentTarget.querySelector('video');
+                                    if (video) {
+                                        if (video.paused) {
+                                            video.play().catch(() => { });
+                                        } else {
+                                            video.pause();
+                                        }
+                                    }
+                                }}
                             >
                                 {/* Dynamic Island (iPhone 14 Pro - 17 Pro style) */}
                                 <div className="absolute top-3 inset-x-0 flex justify-center z-50 pointer-events-none">
