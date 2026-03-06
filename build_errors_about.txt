@@ -1,0 +1,2 @@
+src/pages/About.tsx(163,121): error TS2304: Cannot find name 'Target'.
+src/pages/About.tsx(172,144): error TS2304: Cannot find name 'Globe'.

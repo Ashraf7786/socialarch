@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-red: #E8313A;
+  /* close enough to images */
+  --color-brand-dark: #0f0f0f;
+  --color-brand-gray: #1a1a1a;
+  --color-brand-red-hover: #C8232B;
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-serif: 'Outfit', sans-serif;
+}
+
+@layer base {
+
+  html,
+  body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+
+  body {
+    @apply bg-brand-dark text-slate-100 font-sans;
+  }
+
+  @media (min-width: 768px) {
+
+    *,
+    *::before,
+    *::after {
+      cursor: none !important;
+    }
+  }
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.glass-panel {
+  @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl;
+}
+
+.brand-red {
+  color: #E8313A;
+}
+
+.bg-brand-red {
+  background-color: #E8313A;
+}
+
+.text-brand-red {
+  color: #E8313A;
+}
+
+.border-brand-red {
+  border-color: #E8313A;
+}
+
+/* Custom hide scrollbar utility */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Infinite Scrolling Cards */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  display: flex;
+  width: max-content;
+  animation: scroll 30s linear infinite;
+  will-change: transform;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
+}

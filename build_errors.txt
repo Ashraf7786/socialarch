@@ -1,0 +1,3 @@
+src/components/ArkLogo.tsx(3,17): error TS6133: 'RoundedBox' is declared but its value is never read.
+src/components/Footer.tsx(2,64): error TS6133: 'Send' is declared but its value is never read.
+src/components/ui/shape-landing-hero.tsx(3,18): error TS1484: 'Variants' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
