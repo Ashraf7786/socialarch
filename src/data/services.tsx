@@ -5,6 +5,7 @@ import { WebDesignContent } from '../components/services/WebDesignContent';
 import { GraphicDesignContent } from '../components/services/GraphicDesignContent';
 import { VideoEditingContent } from '../components/services/VideoEditingContent';
 import { BrandAdvertisingContent } from '../components/services/BrandAdvertisingContent';
+import { DigitalMarketingContent } from '../components/services/DigitalMarketingContent';
 
 export type ServiceData = {
     id: string;
@@ -101,5 +102,19 @@ export const servicesData: ServiceData[] = [
         ],
         longDescription: 'Stop playing the organic lottery and start predicting your revenue. Our paid media buyers are obsessed with one metric: Return on Ad Spend (ROAS). We build intricate, scalable marketing funnels across Meta, Google, and emerging platforms. Through relentless A/B testing, pixel-perfect retargeting, and aggressive conversion rate optimization, we turn your ad budget into a profit engine.',
         customContent: <PaidAdvertisingContent />
+    },
+    {
+        id: 'digital-marketing',
+        displayId: '07',
+        title: 'Digital Marketing',
+        description: 'Comprehensive, end-to-end digital acquisition strategies combining SEO, Email Automation, and Conversion Optimization.',
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&w=1000&q=80',
+        subServices: [
+            'SEO OUTREACH', 'EMAIL AUTOMATION',
+            'FUNNEL BUILDING', 'CRO TESTING',
+            'ANALYTICS & GA4', 'MARKETING AUTOMATION'
+        ],
+        longDescription: 'A truly powerful brand requires an omnipresent digital marketing strategy. We don\'t just execute single-channel campaigns; we build holistic, infinite growth loops. By synergizing deep technical SEO with behavioral-triggered email marketing and intense Conversion Rate Optimization (CRO), we ensure every piece of traffic your brand captures is squeezed for maximum lifetime value.',
+        customContent: <DigitalMarketingContent />
     }
 ];
