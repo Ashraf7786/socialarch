@@ -27,23 +27,11 @@ export function Navbar() {
                     className="flex items-center gap-2 md:gap-3 cursor-pointer z-50 hover:opacity-80 transition-opacity"
                     onClick={() => navigate('/')}
                 >
-                    {/* SVG Logo approximating the image provided */}
-                    <svg width="40" height="28" className="md:w-[48px] md:h-[32px]" viewBox="0 0 100 65" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20 40 L35 25 L45 35 L33 50 Z" fill="#E8313A" />
-                        <path d="M30 30 L40 20 L45 30 L35 40 Z" fill="#E8313A" />
-                        <path d="M20 30 L25 40 L10 40 Z" fill="#E8313A" />
-                        <path d="M43 45 L55 25 L80 15 L60 55 Z" fill="#333333" />
-                        <path d="M70 20 L85 10 L80 30 Z" fill="#333333" />
-                        <path d="M50 35 L65 15 L75 25 L80 15" stroke="#333333" strokeWidth="4" />
-                    </svg>
-                    <div className="flex flex-col">
-                        <span className="text-white text-2xl md:text-3xl font-extrabold tracking-tight leading-none pt-1 md:pt-2">
-                            Social <span className="text-brand-red">Arch</span>
-                        </span>
-                        <span className="text-white/60 text-[0.4rem] sm:text-[0.45rem] md:text-[0.55rem] font-bold tracking-[0.1em] uppercase mt-1 md:mt-1.5 ml-0.5">
-                            A Digital Marketing Company
-                        </span>
-                    </div>
+                    <img
+                        src="/logo.png"
+                        alt="Social Arch Logo"
+                        className="h-10 md:h-12 w-auto bg-white/95 p-1.5 rounded-md shadow-[0_0_15px_rgba(255,255,255,0.1)]"
+                    />
                 </div>
 
                 {/* Center Nav Pill */}

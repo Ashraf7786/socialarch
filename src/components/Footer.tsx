@@ -67,23 +67,12 @@ export function Footer() {
 
                     {/* Brand Column */}
                     <div className="flex flex-col gap-10 lg:pr-8">
-                        <a href="/" className="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity">
-                            <svg width="48" height="32" className="shrink-0" viewBox="0 0 100 65" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M20 40 L35 25 L45 35 L33 50 Z" fill="#E8313A" />
-                                <path d="M30 30 L40 20 L45 30 L35 40 Z" fill="#E8313A" />
-                                <path d="M20 30 L25 40 L10 40 Z" fill="#E8313A" />
-                                <path d="M43 45 L55 25 L80 15 L60 55 Z" fill="#ffffff" />
-                                <path d="M70 20 L85 10 L80 30 Z" fill="#ffffff" />
-                                <path d="M50 35 L65 15 L75 25 L80 15" stroke="#ffffff" strokeWidth="4" />
-                            </svg>
-                            <div className="flex flex-col pt-1">
-                                <span className="text-white text-3xl font-extrabold tracking-tight leading-none">
-                                    Social<span className="text-brand-red">Ark</span>
-                                </span>
-                                <span className="text-white/50 text-[0.6rem] font-bold tracking-[0.15em] uppercase mt-1">
-                                    Creative Agency
-                                </span>
-                            </div>
+                        <a href="/" className="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity w-fit">
+                            <img
+                                src="/logo.png"
+                                alt="Social Arch Logo"
+                                className="h-14 w-auto bg-white/95 p-2 rounded-lg shadow-[0_0_20px_rgba(255,255,255,0.05)]"
+                            />
                         </a>
 
                         <p className="text-slate-400 text-base leading-relaxed">
