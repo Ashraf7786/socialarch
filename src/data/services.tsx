@@ -1,6 +1,10 @@
 import type { ReactNode } from 'react';
 import { SocialMediaContent } from '../components/services/SocialMediaContent';
 import { PaidAdvertisingContent } from '../components/services/PaidAdvertisingContent';
+import { WebDesignContent } from '../components/services/WebDesignContent';
+import { GraphicDesignContent } from '../components/services/GraphicDesignContent';
+import { VideoEditingContent } from '../components/services/VideoEditingContent';
+import { BrandAdvertisingContent } from '../components/services/BrandAdvertisingContent';
 
 export type ServiceData = {
     id: string;
@@ -25,7 +29,8 @@ export const servicesData: ServiceData[] = [
             'ECOMMERCE', 'SEO OPTIMIZATION',
             'PERFORMANCE TUNING', 'RESPONSIVE DESIGN'
         ],
-        longDescription: 'In today\'s digital-first world, your website is the foundation of your business. We don\'t just design pretty interfaces; we engineer high-performance, accessible, and conversion-optimized digital experiences. Our development process bridges the gap between aesthetic brilliance and robust technical architecture, ensuring your brand stands out and scales seamlessly.'
+        longDescription: 'In today\'s digital-first world, your website is the foundation of your business. We don\'t just design pretty interfaces; we engineer high-performance, accessible, and conversion-optimized digital experiences. Our development process bridges the gap between aesthetic brilliance and robust technical architecture, ensuring your brand stands out and scales seamlessly.',
+        customContent: <WebDesignContent />
     },
     {
         id: 'graphic-design',
@@ -38,7 +43,8 @@ export const servicesData: ServiceData[] = [
             'TYPOGRAPHY', 'PACKAGING DESIGN',
             'ILLUSTRATION', 'MARKETING COLLATERAL'
         ],
-        longDescription: 'Visual communication is the most powerful tool for brand differentiation. Our graphic design experts craft compelling visual narratives that resonate with your target audience. From foundational logo design and comprehensive brand identities to intricate packaging and marketing collateral, we ensure every pixel aligns with your brand\'s core message and values.'
+        longDescription: 'Visual communication is the most powerful tool for brand differentiation. Our graphic design experts craft compelling visual narratives that resonate with your target audience. From foundational logo design and comprehensive brand identities to intricate packaging and marketing collateral, we ensure every pixel aligns with your brand\'s core message and values.',
+        customContent: <GraphicDesignContent />
     },
     {
         id: 'video-editing',
@@ -51,7 +57,8 @@ export const servicesData: ServiceData[] = [
             'COLOR GRADING', 'MOTION GRAPHICS',
             'SOUND DESIGN', 'VISUAL EFFECTS'
         ],
-        longDescription: 'Video is the undisputed king of modern digital consumption. Our editing suite specializes in transforming raw footage into high-retention, cinematic masterpieces. Whether it\'s crafting viral-ready short-form content for TikTok and Reels, or producing polished, long-form YouTube documentaries, we employ advanced pacing, color grading, and motion graphics to command attention and drive action.'
+        longDescription: 'Video is the undisputed king of modern digital consumption. Our editing suite specializes in transforming raw footage into high-retention, cinematic masterpieces. Whether it\'s crafting viral-ready short-form content for TikTok and Reels, or producing polished, long-form YouTube documentaries, we employ advanced pacing, color grading, and motion graphics to command attention and drive action.',
+        customContent: <VideoEditingContent />
     },
     {
         id: 'brand-advertising',
@@ -64,7 +71,8 @@ export const servicesData: ServiceData[] = [
             'STORYTELLING', 'COPYWRITING',
             'BILLBOARDS & OOH', 'INFLUENCER OUTREACH'
         ],
-        longDescription: 'Great products need great distribution. Our brand advertising services merge compelling storytelling with aggressive, strategic media buying. We design cross-channel campaigns that build unignorable market presence—from high-impact digital placements to out-of-home advertising—ensuring your brand becomes the definitive choice in your industry.'
+        longDescription: 'Great products need great distribution. Our brand advertising services merge compelling storytelling with aggressive, strategic media buying. We design cross-channel campaigns that build unignorable market presence—from high-impact digital placements to out-of-home advertising—ensuring your brand becomes the definitive choice in your industry.',
+        customContent: <BrandAdvertisingContent />
     },
     {
         id: 'social-media-management',
