@@ -74,23 +74,37 @@ export function ServiceDetail() {
                     </motion.div>
                 </div>
 
-                {/* What's Included */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="bg-[#111] border border-white/5 rounded-3xl p-8 md:p-12 mb-24"
-                >
-                    <h2 className="text-3xl font-bold mb-10 border-b border-white/10 pb-6">What's Included in {service.title}</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-8 gap-x-12">
-                        {service.subServices.map((sub, idx) => (
-                            <div key={idx} className="flex items-start gap-3">
-                                <CheckCircle2 className="w-6 h-6 text-brand-red shrink-0" />
-                                <span className="text-lg font-medium text-slate-200">{sub}</span>
-                            </div>
-                        ))}
-                    </div>
-                </motion.div>
+                {/* Standard What's Included (Fallback) */}
+                {(!service.customContent) && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="bg-[#111] border border-white/5 rounded-3xl p-8 md:p-12 mb-24"
+                    >
+                        <h2 className="text-3xl font-bold mb-10 border-b border-white/10 pb-6">What's Included in {service.title}</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-8 gap-x-12">
+                            {service.subServices.map((sub, idx) => (
+                                <div key={idx} className="flex items-start gap-3">
+                                    <CheckCircle2 className="w-6 h-6 text-brand-red shrink-0" />
+                                    <span className="text-lg font-medium text-slate-200">{sub}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </motion.div>
+                )}
+
+                {/* Rich Custom Content */}
+                {service.customContent && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="mb-24 px-2"
+                    >
+                        {service.customContent}
+                    </motion.div>
+                )}
 
                 {/* CTA */}
                 <div className="text-center bg-brand-red/10 border border-brand-red/20 rounded-[3rem] p-12 md:p-20 relative overflow-hidden">
