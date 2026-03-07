@@ -1,17 +1,18 @@
 import { motion } from 'framer-motion';
+import type { Variants } from 'framer-motion';
 import {
-    Target, LineChart, Users, Zap, Image as ImageIcon, Video, MessageSquare,
-    MousePointerClick, Instagram, Linkedin, Facebook, BarChart3, ShieldCheck,
+    Target, LineChart, Zap, Image as ImageIcon, Video, MessageSquare,
+    Instagram, Linkedin, Facebook, BarChart3, ShieldCheck,
     Lightbulb, ChevronDown
 } from 'lucide-react';
 import { useState } from 'react';
 
-const fadeIn = {
+const fadeIn: Variants = {
     hidden: { opacity: 0, y: 40 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } }
 };
 
-const staggerContainer = {
+const staggerContainer: Variants = {
     hidden: { opacity: 0 },
     visible: {
         opacity: 1,

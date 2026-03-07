@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { SocialMediaContent } from '../components/services/SocialMediaContent';
+import { PaidAdvertisingContent } from '../components/services/PaidAdvertisingContent';
 
 export type ServiceData = {
     id: string;
@@ -90,6 +91,7 @@ export const servicesData: ServiceData[] = [
             'RETARGETING FUNNELS', 'A/B TESTING',
             'CONVERSION RATE OPTIMIZATION'
         ],
-        longDescription: 'Stop playing the organic lottery and start predicting your revenue. Our paid media buyers are obsessed with one metric: Return on Ad Spend (ROAS). We build intricate, scalable marketing funnels across Meta, Google, and emerging platforms. Through relentless A/B testing, pixel-perfect retargeting, and aggressive conversion rate optimization, we turn your ad budget into a profit engine.'
+        longDescription: 'Stop playing the organic lottery and start predicting your revenue. Our paid media buyers are obsessed with one metric: Return on Ad Spend (ROAS). We build intricate, scalable marketing funnels across Meta, Google, and emerging platforms. Through relentless A/B testing, pixel-perfect retargeting, and aggressive conversion rate optimization, we turn your ad budget into a profit engine.',
+        customContent: <PaidAdvertisingContent />
     }
 ];
