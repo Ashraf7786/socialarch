@@ -88,8 +88,7 @@ export function SocialShowcase() {
 
     return (
         <section ref={sectionRef} className="relative w-full bg-[#0d0d0d] py-24 md:py-32 overflow-hidden">
-            {/* Massive Background Text moving on scroll */}
-            <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full whitespace-nowrap pointer-events-none z-0 overflow-hidden mix-blend-overlay opacity-20">
+            <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full whitespace-nowrap pointer-events-none z-0 overflow-hidden opacity-5">
                 <h2 className="bg-text text-[15rem] md:text-[25rem] font-bold text-white tracking-tighter leading-none select-none">
                     SOCIAL CONTENT
                 </h2>
@@ -145,23 +144,57 @@ export function SocialShowcase() {
                                 className="absolute inset-0 bg-black rounded-[3.5rem] border-[6px] border-[#2a2a2a] shadow-2xl overflow-hidden z-10 custom-shadow ring-1 ring-white/10 group/phone cursor-pointer"
                                 onPointerEnter={(e) => {
                                     if (e.pointerType === 'touch') return;
+
+                                    // Pause all other videos
+                                    document.querySelectorAll('.showcase-video').forEach((v) => {
+                                        const videoEl = v as HTMLVideoElement;
+                                        if (videoEl !== e.currentTarget.querySelector('video')) {
+                                            videoEl.pause();
+                                            videoEl.currentTime = 0;
+                                        }
+                                    });
+
                                     const video = e.currentTarget.querySelector('video');
-                                    if (video) video.play().catch(() => { });
+                                    if (video) {
+                                        video.muted = false;
+                                        video.play().catch(() => {
+                                            // Fallback to muted if browser blocks unmuted autoplay
+                                            video.muted = true;
+                                            video.play().catch(() => { });
+                                        });
+                                    }
                                 }}
                                 onPointerLeave={(e) => {
                                     if (e.pointerType === 'touch') return;
                                     const video = e.currentTarget.querySelector('video');
-                                    if (video) video.pause();
+                                    if (video) {
+                                        video.pause();
+                                        video.currentTime = 0;
+                                    }
                                 }}
                                 onClick={(e) => {
                                     const video = e.currentTarget.querySelector('video');
-                                    if (video) {
-                                        // Toggle mute on tap/click so users can hear the voice
-                                        video.muted = !video.muted;
-                                        // Ensure it's playing
-                                        if (video.paused) {
+                                    if (!video) return;
+
+                                    if (video.paused) {
+                                        // Mobile/Click activate: pause others, reset them
+                                        document.querySelectorAll('.showcase-video').forEach((v) => {
+                                            const videoEl = v as HTMLVideoElement;
+                                            if (videoEl !== video) {
+                                                videoEl.pause();
+                                                videoEl.currentTime = 0;
+                                            }
+                                        });
+
+                                        video.muted = false;
+                                        video.play().catch(() => {
+                                            video.muted = true;
                                             video.play().catch(() => { });
-                                        }
+                                        });
+                                    } else {
+                                        // Tap again to stop and reset
+                                        video.pause();
+                                        video.currentTime = 0;
                                     }
                                 }}
                             >
@@ -178,12 +211,12 @@ export function SocialShowcase() {
                                     <video
                                         key={phone.video}
                                         src={phone.video}
-                                        autoPlay
                                         muted
                                         loop
                                         playsInline
                                         webkit-playsinline="true"
-                                        className="w-full h-full object-cover scale-105 filter contrast-125 brightness-110 saturate-[1.2] transition-transform duration-700 group-hover/phone:scale-110"
+                                        preload="auto"
+                                        className="showcase-video w-full h-full object-cover scale-[1.02] transition-transform duration-700 group-hover/phone:scale-105"
                                     />
 
                                     {/* Overlay UI (Optional purely aesthetic for "social post" look) */}
@@ -200,20 +233,20 @@ export function SocialShowcase() {
                                     {/* Sidebar actions */}
                                     <div className="absolute right-3 bottom-20 flex flex-col gap-4 z-20 items-center">
                                         <div className="flex flex-col items-center gap-1">
-                                            <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white">❤️</div>
+                                            <div className="w-10 h-10 rounded-full bg-black/60 flex items-center justify-center text-white">❤️</div>
                                         </div>
                                         <div className="flex flex-col items-center gap-1">
-                                            <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white">💬</div>
+                                            <div className="w-10 h-10 rounded-full bg-black/60 flex items-center justify-center text-white">💬</div>
                                         </div>
                                         <div className="flex flex-col items-center gap-1">
-                                            <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white">↗️</div>
+                                            <div className="w-10 h-10 rounded-full bg-black/60 flex items-center justify-center text-white">↗️</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            {/* Glow Behind Phone */}
-                            <div className="absolute inset-[-2rem] bg-brand-red/10 blur-3xl rounded-[3rem] -z-10 opacity-50 pointer-events-none" />
+                            {/* Glow Behind Phone - Using radial gradient instead of CSS blur for performance */}
+                            <div className="absolute inset-[-2rem] rounded-[3rem] -z-10 opacity-30 pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(232,49,58,0.4) 0%, rgba(0,0,0,0) 70%)' }} />
                         </div>
                     ))}
                 </div>

@@ -5,7 +5,7 @@ import { ArrowUpRight, MonitorSmartphone, Palette, Rocket } from 'lucide-react';
 const features = [
     {
         title: "Brand Identity",
-        subtitle: "2D & 3D Animation",
+        subtitle: "",
         description: "We craft visually stunning, unforgettable brand identities that resonate deeply logically and emotionally with your target audience.",
         icon: <Palette className="w-8 h-8 text-brand-red" />,
         colSpan: "col-span-1 lg:col-span-2",

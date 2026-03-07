@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowUpRight, Play, ExternalLink } from 'lucide-react';
+import { ArrowUpRight, Play, ExternalLink, Volume2, VolumeX } from 'lucide-react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
 import { Helmet } from 'react-helmet-async';
@@ -150,24 +150,60 @@ const allProjects = [
 ];
 
 const videoReels = [
-    { id: 'v1', title: 'Summer Campaign', client: 'Nike', image: 'https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?auto=format&fit=crop&w=600&h=1066&q=80', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4' },
-    { id: 'v2', title: 'Product Launch', client: 'Apple', image: 'https://images.unsplash.com/photo-1526512340740-9217d0159da9?auto=format&fit=crop&w=600&h=1066&q=80', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4' },
-    { id: 'v3', title: 'Brand Anthem', client: 'RedBull', image: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=600&h=1066&q=80', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4' },
-    { id: 'v4', title: 'Social Story', client: 'Spotify', image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=600&h=1066&q=80', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4' },
-    { id: 'v5', title: 'Documentary Mini', client: 'Patagonia', image: 'https://images.unsplash.com/photo-1504280502226-f4c6881a179c?auto=format&fit=crop&w=600&h=1066&q=80', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4' },
+    { id: 'v1', title: 'Agency Showreel 01', client: 'SocialArch', image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=600&h=1066&q=80', video: '/video/socialarch1.mp4' },
+    { id: 'v2', title: 'Agency Showreel 02', client: 'SocialArch', image: 'https://images.unsplash.com/photo-1526512340740-9217d0159da9?auto=format&fit=crop&w=600&h=1066&q=80', video: '/video/socialarch2.mp4' },
+    { id: 'v3', title: 'City Tours Promo', client: 'Guidewala', image: 'https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?auto=format&fit=crop&w=600&h=1066&q=80', video: '/video/Guidewala%20(%20places%20visit%20).mp4' },
+    { id: 'v4', title: 'Holi Festival Campaign', client: 'KKCO', image: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=600&h=1066&q=80', video: '/video/KKCO%20(holi).mp4' },
+    { id: 'v5', title: 'Astrology Promo', client: 'Khatu Astrologer', image: 'https://images.unsplash.com/photo-1533055640609-24b498dfd74c?auto=format&fit=crop&w=600&h=1066&q=80', video: '/video/astrologer%20(khatu%20)4.mp4' },
+    { id: 'v6', title: 'Gourmet Pizza Launch', client: 'Rosado Pizza', image: 'https://images.unsplash.com/photo-1504280502226-f4c6881a179c?auto=format&fit=crop&w=600&h=1066&q=80', video: '/video/rosado%20pizza%20final!%20(1).mp4' },
+    { id: 'v7', title: 'Coffee Blend Promo', client: 'Kaleidoscope Coffee', image: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=600&h=1066&q=80', video: '/video/kaleidoscope%20coffee.mp4' },
+    { id: 'v8', title: 'Brand Cinematic', client: 'Kaleidoscope', image: 'https://images.unsplash.com/photo-1507238692062-5a042e9eec62?auto=format&fit=crop&w=600&h=1066&q=80', video: '/video/kaleidoscope.mp4' }
 ];
 
 function ReelCard({ reel }: { reel: typeof videoReels[0] }) {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isPlaying, setIsPlaying] = useState(false);
+    const [isMuted, setIsMuted] = useState(true);
+
+    const playVideo = async (withSound: boolean) => {
+        if (!videoRef.current) return;
+
+        // Automatically pause any other playing reel videos
+        document.querySelectorAll('.reel-video').forEach((v) => {
+            const videoEl = v as HTMLVideoElement;
+            if (videoEl !== videoRef.current) {
+                videoEl.pause();
+                videoEl.currentTime = 0;
+            }
+        });
+
+        // Ensure volume is explicitly up
+        videoRef.current.volume = 1.0;
+
+        try {
+            videoRef.current.muted = !withSound;
+            setIsMuted(!withSound);
+            await videoRef.current.play();
+            setIsPlaying(true);
+        } catch (err) {
+            // Fallback for strict autoplay policies: play muted
+            if (videoRef.current) {
+                videoRef.current.muted = true;
+                setIsMuted(true);
+                try {
+                    await videoRef.current.play();
+                    setIsPlaying(true);
+                } catch (e) {
+                    console.error("Autoplay completely blocked", e);
+                }
+            }
+        }
+    };
 
     const handlePointerEnter = (e: React.PointerEvent) => {
+        // Only trigger on mouse hover, not touch (touch is handled by click)
         if (e.pointerType === 'touch') return;
-        if (videoRef.current) {
-            videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {
-                console.log("Autoplay blocked: User must interact with the document first.");
-            });
-        }
+        playVideo(true);
     };
 
     const handlePointerLeave = (e: React.PointerEvent) => {
@@ -180,11 +216,19 @@ function ReelCard({ reel }: { reel: typeof videoReels[0] }) {
     };
 
     const handleClick = () => {
-        if (videoRef.current) {
-            if (videoRef.current.paused) {
-                videoRef.current.play().then(() => setIsPlaying(true)).catch(() => { });
+        if (!videoRef.current) return;
+
+        if (videoRef.current.paused) {
+            // Tap to play with sound (bypasses mobile autoplay restrictions)
+            playVideo(true);
+        } else {
+            // If already playing, tap to toggle mute or pause. Let's pause to mimic standard behavior.
+            if (videoRef.current.muted) {
+                videoRef.current.muted = false;
+                setIsMuted(false);
             } else {
                 videoRef.current.pause();
+                videoRef.current.currentTime = 0; // Reset video on pause to match showcase behavior
                 setIsPlaying(false);
             }
         }
@@ -197,24 +241,28 @@ function ReelCard({ reel }: { reel: typeof videoReels[0] }) {
             onPointerLeave={handlePointerLeave}
             onClick={handleClick}
         >
-            <img
-                src={reel.image}
-                alt={reel.title}
-                className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 z-0 ${isPlaying ? 'scale-110' : 'scale-100'}`}
-            />
-            {/* Hover/Playing Video Layer */}
+            {/* Video acts as both thumbnail and active player */}
             <video
                 ref={videoRef}
                 src={reel.video}
                 loop
                 playsInline
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 z-10 ${isPlaying ? 'opacity-100' : 'opacity-0'}`}
+                webkit-playsinline="true"
+                preload="metadata"
+                className={`reel-video absolute inset-0 w-full h-full object-cover transition-transform duration-700 z-0 ${isPlaying ? 'scale-110' : 'scale-100'}`}
             />
             <div className={`absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent transition-opacity duration-300 z-20 ${isPlaying ? 'opacity-90' : 'opacity-80'}`} />
 
             {/* Play Button */}
-            <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 transition-all duration-500 z-30 ${isPlaying ? 'opacity-0 scale-150' : 'opacity-100 scale-100'}`}>
+            <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-white/10 flex items-center justify-center border border-white/20 transition-all duration-500 z-30 ${isPlaying ? 'opacity-0 scale-150' : 'opacity-100 scale-100'}`}>
                 <Play className="w-6 h-6 text-white ml-1 fill-white" />
+            </div>
+
+            {/* Audio Indicator Overlay (Only shows when playing) */}
+            <div className={`absolute top-6 right-6 z-40 transition-opacity duration-300 ${isPlaying ? 'opacity-100' : 'opacity-0'}`}>
+                <div className="w-10 h-10 rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center border border-white/20 text-white">
+                    {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+                </div>
             </div>
 
             <div className={`absolute bottom-0 left-0 w-full p-8 transform transition-transform duration-300 z-30 ${isPlaying ? 'translate-y-0' : 'translate-y-4'}`}>
@@ -312,6 +360,29 @@ export function Projects() {
                     </div>
                 </div>
 
+                {/* Video Reels Section */}
+                {(activeTab === 'Video Production' || activeTab === 'All') && (
+                    <div className="reels-wrapper relative pb-10">
+
+                        {(activeTab === 'All') && (
+                            <div className="flex items-center justify-between mb-12">
+                                <h3 className="text-3xl md:text-5xl font-bold tracking-tight text-white">Video <span className="text-brand-red italic font-serif">Reels</span></h3>
+                                <button className="hidden md:flex text-slate-400 hover:text-white items-center gap-2 group transition-colors">
+                                    View All Reels <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-brand-red transition-all" />
+                                </button>
+                            </div>
+                        )}
+
+                        <div className="w-full overflow-x-auto pb-12 hide-scrollbar mask-gradient-horizontal" style={{ WebkitOverflowScrolling: 'touch' }}>
+                            <div className="reels-container flex gap-6 md:gap-8 w-max px-4">
+                                {videoReels.map((reel) => (
+                                    <ReelCard key={reel.id} reel={reel} />
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                )}
+
                 {/* Categories Tab */}
                 <div className="flex flex-wrap items-center justify-center gap-3 mb-16 md:mb-24 px-4">
                     {categories.map((cat, i) => (
@@ -346,7 +417,7 @@ export function Projects() {
                                     className={`project-card group relative flex flex-col gap-6 cursor-pointer ${index % 2 !== 0 ? 'md:mt-24' : ''}`}
                                 >
                                     <div className="w-full h-[400px] lg:h-[550px] overflow-hidden rounded-[2rem] relative bg-[#111] border border-white/5">
-                                        <div className="absolute inset-0 bg-brand-red/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 mix-blend-overlay" />
+                                        <div className="absolute inset-0 bg-brand-red/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
                                         <img
                                             src={project.image}
                                             alt={project.title}
@@ -378,29 +449,6 @@ export function Projects() {
                             ))}
                         </AnimatePresence>
                     </motion.div>
-                )}
-
-                {/* Video Reels Section */}
-                {(activeTab === 'Video Production' || activeTab === 'All') && (
-                    <div className="reels-wrapper relative pt-10">
-
-                        {(activeTab === 'All') && (
-                            <div className="flex items-center justify-between mb-12">
-                                <h3 className="text-3xl md:text-5xl font-bold tracking-tight text-white">Video <span className="text-brand-red italic font-serif">Reels</span></h3>
-                                <button className="hidden md:flex text-slate-400 hover:text-white items-center gap-2 group transition-colors">
-                                    View All Reels <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-brand-red transition-all" />
-                                </button>
-                            </div>
-                        )}
-
-                        <div className="w-full overflow-x-auto pb-12 hide-scrollbar mask-gradient-horizontal" style={{ WebkitOverflowScrolling: 'touch' }}>
-                            <div className="reels-container flex gap-6 md:gap-8 w-max px-4">
-                                {videoReels.map((reel) => (
-                                    <ReelCard key={reel.id} reel={reel} />
-                                ))}
-                            </div>
-                        </div>
-                    </div>
                 )}
 
             </div>

@@ -1,57 +1,13 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, Plus, Eye } from 'lucide-react';
-
-const servicesData = [
-    {
-        id: '01',
-        title: 'Social Media Management',
-        description: 'Social media is your digital storefront. We manage your presence across Instagram, Facebook, LinkedIn, and TikTok with a focus on community building.',
-        image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&w=1000&q=80',
-        subServices: [
-            'CONTENT PILLARS', 'COMMUNITY BUILDING',
-            'ENGAGEMENT GROWTH', 'MONTHLY REPORTS',
-            'ANALYTICS TRACKING'
-        ]
-    },
-    {
-        id: '02',
-        title: 'Paid Advertising',
-        description: 'Stop "boosting" posts and start building funnels. We specialize in Meta Ads and Google Ads that focus on one thing: ROI.',
-        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&w=1000&q=80',
-        subServices: [
-            'A/B TESTING', 'META ADS',
-            'RETARGETING FUNNELS', 'GOOGLE ADS',
-            'CONVERSION RATE OPTIMIZATION', 'CREATIVE STRATEGY'
-        ]
-    },
-    {
-        id: '03',
-        title: 'Elite Content Creation',
-        description: "Your brand's visual identity is its first impression. Our creative studio produces scroll-stopping content designed for modern algorithms.",
-        image: 'https://images.unsplash.com/photo-1542744094-3a31f272c490?ixlib=rb-4.0.3&w=1000&q=80',
-        subServices: [
-            'VIRAL-READY REELS', 'SHORT-FORM VIDEO',
-            'HIGH-END GRAPHIC DESIGN', 'MINIMALIST VISUALS',
-            'COPYWRITING THAT CONVERTS', 'STORYTELLING'
-        ]
-    },
-    {
-        id: '04',
-        title: 'SEO & Search Strategy',
-        description: 'What good is a beautiful brand if no one can find it? We integrate SEO best practices to ensure your brand ranks for profitable keywords.',
-        image: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?ixlib=rb-4.0.3&w=1000&q=80',
-        subServices: [
-            'SEO BEST PRACTICES', 'KEYWORD OPTIMIZATION',
-            'SEARCH ALGORITHMS', 'ORGANIC REACH',
-            'BOTTOM LINE STRATEGY', 'RANKING REPORTS'
-        ]
-    }
-];
+import { useNavigate } from 'react-router-dom';
+import { servicesData } from '../data/services';
 
 export function Services() {
-    const [activeId, setActiveId] = useState('01');
+    const [activeId, setActiveId] = useState('web-design');
     const activeService = servicesData.find(s => s.id === activeId) || servicesData[0];
+    const navigate = useNavigate();
 
     return (
         <section id="services" className="relative py-16 md:py-20 px-6 md:px-12 bg-black text-white overflow-hidden min-h-screen">
@@ -81,7 +37,7 @@ export function Services() {
                                     onClick={() => setActiveId(service.id)}
                                 >
                                     <span className="text-lg md:text-2xl font-semibold shrink-0">
-                                        &#123;{service.id}&#125;
+                                        &#123;{service.displayId}&#125;
                                     </span>
                                     <h3 className={`text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight transition-colors duration-300 ${isActive ? 'text-brand-red' : 'text-white'}`}>
                                         {service.title}
@@ -101,7 +57,10 @@ export function Services() {
                             {activeService.description}
                         </p>
 
-                        <button className="flex items-center gap-4 bg-brand-red hover:bg-[#C8232B] text-white px-6 py-3 rounded-full font-semibold transition-colors duration-300 w-fit shrink-0">
+                        <button
+                            onClick={() => navigate('/services')}
+                            className="flex items-center gap-4 bg-brand-red hover:bg-[#C8232B] text-white px-6 py-3 rounded-full font-semibold transition-colors duration-300 w-fit shrink-0"
+                        >
                             All Services
                             <span className="bg-[#111] text-white w-8 h-8 flex items-center justify-center rounded-full">
                                 <Eye className="w-4 h-4" />
@@ -129,8 +88,11 @@ export function Services() {
                         </AnimatePresence>
 
                         {/* Floating Action Button */}
-                        <div className="absolute -bottom-6 -right-6 lg:-bottom-8 lg:-right-8 bg-brand-red text-white w-24 h-24 md:w-32 md:h-32 rounded-[2rem] flex items-center justify-center cursor-pointer hover:bg-white hover:text-black transition-colors duration-300 shadow-xl border-4 border-black z-20">
-                            <ArrowUpRight className="w-8 h-8 md:w-10 md:h-10" />
+                        <div
+                            onClick={() => navigate(`/services/${activeService.id}`)}
+                            className="absolute -bottom-6 -right-6 lg:-bottom-8 lg:-right-8 bg-brand-red text-white w-24 h-24 md:w-32 md:h-32 rounded-[2rem] flex items-center justify-center cursor-pointer hover:bg-white hover:text-black transition-colors duration-300 shadow-xl border-4 border-black z-20 group/fab"
+                        >
+                            <ArrowUpRight className="w-8 h-8 md:w-10 md:h-10 transition-transform group-hover/fab:rotate-12 group-hover/fab:scale-110" />
                         </div>
                     </div>
 

@@ -99,8 +99,9 @@ function HeroGeometric({
     };
 
     return (
-        <div className="relative min-h-[75vh] md:min-h-screen w-full flex items-center justify-center overflow-hidden bg-[#0d0d0d]">
-            <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/[0.05] via-transparent to-brand-red/[0.05] blur-3xl" />
+        <div className="relative min-h-[75vh] md:min-h-screen w-full flex items-center justify-center overflow-hidden">
+            {/* Optimized Background Gradient instead of CSS blur */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-500/[0.05] via-transparent to-brand-red/[0.05]" />
 
             <div className="absolute inset-0 overflow-hidden">
                 <ElegantShape
