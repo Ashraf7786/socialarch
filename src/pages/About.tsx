@@ -28,7 +28,7 @@ export function About() {
     return (
         <main ref={mainRef} className="w-full bg-[#050505] text-white overflow-hidden font-sans">
             <Helmet>
-                <title>About SocialArk | The Architects of Digital Growth</title>
+                <title>Haal Baani </title>
                 <meta name="description" content="Discover SocialArk, a premier social media marketing agency dedicated to bridging the gap between ambitious visions and measurable digital reality." />
                 <meta name="keywords" content="about us, social media agency, digital growth, digital marketing experts, SocialArk methodology" />
             </Helmet>

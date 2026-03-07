@@ -8,19 +8,19 @@ gsap.registerPlugin(ScrollTrigger);
 const phones = [
     {
         id: 1,
-        video: "https://videos.pexels.com/video-files/853889/853889-sd_640_360_25fps.mp4",
+        video: "/video/socialarch1.mp4",
         rotation: -5,
         yOffset: 20
     },
     {
         id: 2,
-        video: "https://videos.pexels.com/video-files/2871908/2871908-sd_360_640_25fps.mp4",
+        video: "/video/Guidewala%20(%20places%20visit%20).mp4",
         rotation: 0,
         yOffset: 0
     },
     {
         id: 3,
-        video: "https://videos.pexels.com/video-files/3206300/3206300-sd_360_640_25fps.mp4",
+        video: "/video/rosado%20pizza%20final!%20(1).mp4",
         rotation: 5,
         yOffset: 20
     }
@@ -156,10 +156,11 @@ export function SocialShowcase() {
                                 onClick={(e) => {
                                     const video = e.currentTarget.querySelector('video');
                                     if (video) {
+                                        // Toggle mute on tap/click so users can hear the voice
+                                        video.muted = !video.muted;
+                                        // Ensure it's playing
                                         if (video.paused) {
                                             video.play().catch(() => { });
-                                        } else {
-                                            video.pause();
                                         }
                                     }
                                 }}
@@ -175,14 +176,15 @@ export function SocialShowcase() {
                                 {/* Video Player / Screen */}
                                 <div className="absolute inset-0 w-full h-full bg-brand-dark overflow-hidden rounded-[3rem]">
                                     <video
+                                        key={phone.video}
+                                        src={phone.video}
+                                        autoPlay
                                         muted
                                         loop
                                         playsInline
+                                        webkit-playsinline="true"
                                         className="w-full h-full object-cover scale-105 filter contrast-125 brightness-110 saturate-[1.2] transition-transform duration-700 group-hover/phone:scale-110"
-                                        poster="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=600&auto=format&fit=crop"
-                                    >
-                                        <source src={phone.video} type="video/mp4" />
-                                    </video>
+                                    />
 
                                     {/* Overlay UI (Optional purely aesthetic for "social post" look) */}
                                     <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-20 flex flex-col justify-end">
