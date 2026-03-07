@@ -14,15 +14,15 @@ export function Services() {
             {/* Background glowing orb element */}
             <div className="absolute top-1/4 left-0 w-[400px] h-[400px] md:w-[600px] md:h-[600px] bg-brand-red rounded-full blur-[100px] md:blur-[150px] opacity-20 -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
 
-            <div className="max-w-[1400px] mx-auto relative z-10 flex flex-col lg:flex-row gap-16 lg:gap-24">
+            <div className="max-w-[1400px] mx-auto relative z-10 flex flex-col lg:flex-row gap-12 lg:gap-16">
 
                 {/* Left Column */}
                 <div className="lg:w-1/2 flex flex-col">
-                    <div className="flex items-center gap-2 text-xs font-bold tracking-[0.2em] mb-8 text-white">
+                    <div className="flex items-center gap-2 text-xs font-bold tracking-[0.2em] mb-4 text-white">
                         <span className="text-brand-red"><Plus className="w-4 h-4 inline-block" /></span> SERVICES
                     </div>
 
-                    <h2 className="text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.1] tracking-tight mb-20 text-white pr-10">
+                    <h2 className="text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.1] tracking-tight mb-10 text-white pr-10">
                         We Provide Digital<br />
                         Services <span className="text-brand-red">for You</span>
                     </h2>
@@ -33,7 +33,7 @@ export function Services() {
                             return (
                                 <div
                                     key={service.id}
-                                    className={`group flex items-center gap-8 py-8 md:py-10 border-b border-white/10 cursor-pointer transition-all duration-300 ${isActive ? 'opacity-100' : 'opacity-40 hover:opacity-70'}`}
+                                    className={`group flex items-center gap-8 py-6 md:py-8 border-b border-white/10 cursor-pointer transition-all duration-300 ${isActive ? 'opacity-100' : 'opacity-40 hover:opacity-70'}`}
                                     onClick={() => setActiveId(service.id)}
                                 >
                                     <span className="text-lg md:text-2xl font-semibold shrink-0">
@@ -49,10 +49,10 @@ export function Services() {
                 </div>
 
                 {/* Right Column */}
-                <div className="lg:w-[45%] flex flex-col lg:ml-auto pt-0 lg:pt-10">
+                <div className="lg:w-[45%] flex flex-col lg:ml-auto pt-0">
 
                     {/* Top description and button */}
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-8 mb-12 border-b border-white/10 pb-12 lg:border-none lg:pb-0">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-8 mb-10 border-b border-white/10 pb-8 lg:border-none lg:pb-0">
                         <p className="text-slate-300 text-lg md:text-xl max-w-sm leading-relaxed">
                             {activeService.description}
                         </p>
@@ -69,7 +69,7 @@ export function Services() {
                     </div>
 
                     {/* Image and Floating Button */}
-                    <div className="relative mb-16">
+                    <div className="relative mb-12">
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={activeService.id}
@@ -77,7 +77,7 @@ export function Services() {
                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                 exit={{ opacity: 0, y: -15, scale: 0.98 }}
                                 transition={{ duration: 0.4, ease: "easeOut" }}
-                                className="w-full h-[300px] sm:h-[400px] md:h-[450px] rounded-[2rem] overflow-hidden shadow-2xl relative"
+                                className="w-full h-[300px] sm:h-[350px] md:h-[400px] rounded-[2rem] overflow-hidden shadow-2xl relative"
                             >
                                 <img
                                     src={activeService.image}
