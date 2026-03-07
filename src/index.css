@@ -41,22 +41,6 @@
   @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl;
 }
 
-.brand-red {
-  color: #E8313A;
-}
-
-.bg-brand-red {
-  background-color: #E8313A;
-}
-
-.text-brand-red {
-  color: #E8313A;
-}
-
-.border-brand-red {
-  border-color: #E8313A;
-}
-
 /* Custom hide scrollbar utility */
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
