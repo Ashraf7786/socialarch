@@ -49,7 +49,7 @@ export function Services() {
                 </div>
 
                 {/* Right Column */}
-                <div className="lg:w-[45%] flex flex-col lg:ml-auto pt-0">
+                <div className="lg:w-[45%] flex flex-col lg:ml-auto pt-0 lg:sticky lg:top-32 self-start mb-12 lg:mb-0">
 
                     {/* Top description and button */}
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-8 mb-10 border-b border-white/10 pb-8 lg:border-none lg:pb-0">
