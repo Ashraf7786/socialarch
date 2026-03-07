@@ -13,9 +13,9 @@ export function Home() {
     return (
         <main className="relative z-10 w-full flex flex-col gap-0 md:gap-12">
             <Helmet>
-                <title>SocialArch | Social Media Marketing Agency</title>
-                <meta name="description" content="Master the digital landscape with SocialArk. We build authority and transform ambitious brands into market leaders through innovative design and cutting-edge strategy." />
-                <meta name="keywords" content="social media marketing, digital marketing company, social media agency, content creation, paid advertising" />
+                <title>SocialArk | Premier Digital Marketing & Social Media Agency</title>
+                <meta name="description" content="Master the digital landscape with SocialArk. We are a premier digital marketing company specializing in social media growth, paid advertising, and aesthetic web design." />
+                <meta name="keywords" content="social media marketing, digital marketing company, social media agency, content creation, paid advertising, web design, SEO, brand positioning" />
             </Helmet>
             <Hero />
             <Features />

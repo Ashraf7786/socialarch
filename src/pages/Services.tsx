@@ -31,8 +31,9 @@ export function Services() {
     return (
         <div className="min-h-screen bg-brand-dark pt-24">
             <Helmet>
-                <title>Our Services - SocialArk | Social Media Agency</title>
-                <meta name="description" content="Explore our premium social media marketing, paid advertising, and content creation services designed to build your brand and drive ROI." />
+                <title>Our Services | SocialArk Marketing Solutions</title>
+                <meta name="description" content="Explore our elite suite of services, from Web Design and Video Production to high-ROI Paid Advertising and Omnichannel Brand Strategy." />
+                <meta name="keywords" content="digital marketing services, social media management, paid ads, SEO strategy, branding, video editing, UI/UX design, SocialArk services" />
             </Helmet>
 
             {/* Hero Section */}

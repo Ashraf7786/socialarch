@@ -22,8 +22,9 @@ export function ServiceDetail() {
     return (
         <div className="min-h-screen bg-brand-dark pt-32 pb-24 text-white">
             <Helmet>
-                <title>{service.title} - SocialArk | Social Media Agency</title>
+                <title>{service.title} | SocialArk Services</title>
                 <meta name="description" content={service.description} />
+                <meta name="keywords" content={`${service.title.toLowerCase()}, ${service.subServices.join(', ').toLowerCase()}, digital marketing, SocialArk`} />
             </Helmet>
 
             <div className="max-w-[1200px] mx-auto px-6 md:px-12">

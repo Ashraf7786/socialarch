@@ -47,9 +47,9 @@ export function Contact() {
     return (
         <main ref={containerRef} className="min-h-screen pt-32 px-6 md:px-12 max-w-[1400px] mx-auto relative overflow-hidden">
             <Helmet>
-                <title>Contact SocialArk | Let's Build Something Great</title>
-                <meta name="description" content="Ready to take your digital presence to the next level? Contact SocialArk today and let's discuss how our premium marketing agency can scale your brand." />
-                <meta name="keywords" content="contact us, social media agency contact, hire digital marketers, marketing consultation, SocialArk support" />
+                <title>Contact Us | Let's Build Something Great - SocialArk</title>
+                <meta name="description" content="Ready to dominate your industry? Contact SocialArk today for a discovery call and let's discuss how our digital strategies can scale your brand." />
+                <meta name="keywords" content="contact SocialArk, hire marketing agency, request marketing proposal, social media consultation, digital agency contact" />
             </Helmet>
 
             {/* Background Glow */}

@@ -332,9 +332,9 @@ export function Projects() {
     return (
         <main ref={containerRef} className="min-h-screen bg-[#050505] relative overflow-hidden pt-32">
             <Helmet>
-                <title>Our Portfolio | SocialArk Digital Works</title>
-                <meta name="description" content="Explore a curated collection of SocialArk's finest digital experiences, engineered precisely to elevate and inspire modern businesses." />
-                <meta name="keywords" content="portfolio, digital experiences, UI/UX design, branding, case studies, video reels, Web development" />
+                <title>Our Portfolio & Case Studies | SocialArk</title>
+                <meta name="description" content="Explore a curated collection of SocialArk's finest digital experiences, from high-converting paid campaigns to stunning web design architectures." />
+                <meta name="keywords" content="marketing portfolio, case studies, digital experiences, UI/UX design portfolio, branding work, video marketing reels, SocialArk projects" />
             </Helmet>
 
             {/* 3D Background */}
